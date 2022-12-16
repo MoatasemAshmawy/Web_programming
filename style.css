@@ -80,16 +80,21 @@ transform: scale(1.1);
     position: absolute;
     margin-top: 1rem;
     background-color: black;
-    width:120%;
-    padding: 5px;
-    transition: .5s;
-    opacity: 0;
+    width:max-content;
+    left: 0;
+    padding: 0.5rem;
+    transition: .05s ease-in;
+    visibility: hidden;
     z-index: 2;
 }
 
 .dropdown:hover .categories{
        
-        opacity: 1;
+        visibility: visible;
     
 
+}
+
+.category{
+    margin-bottom: 0.5rem;
 }
