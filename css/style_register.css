@@ -42,6 +42,8 @@
     background-color: #FAF9F6;
     border-radius: 100vw;
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 .register_wrapper{
