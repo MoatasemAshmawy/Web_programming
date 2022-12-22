@@ -18,7 +18,16 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    height:100%;
 }
+
+.wrapper > img {
+    height: 150%;
+    
+}
+
+
+
 .navbar{
     height: 12vh;
     width: 100%;
@@ -32,12 +41,20 @@ body{
     height: 100%;
 }
 
+.link > span {
+    font-size: 1.3rem;
+    position: relative;
+    top:3px;
+}
+
+
 .link{
     text-decoration: none;
     color: whitesmoke;
     display: block;
     transition: .3s ease-in-out;
     font-size: 1.3rem;
+    text-align: center;
 }
 
 .link:hover{
@@ -54,6 +71,7 @@ transform: scale(1.1);
     position: sticky;
     top:0;
     background-color: var(--back-color);
+    
 }
 
 .dropdown{
