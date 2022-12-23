@@ -23,7 +23,7 @@ main{
 }
 
 .wrapper{
-    width:33%;
+    width:calc(100%/3);
     display: flex;
     align-items: center;
     justify-content: center;
