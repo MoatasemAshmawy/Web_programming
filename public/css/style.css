@@ -80,7 +80,7 @@ transform: scale(1.1);
     position: sticky;
     top:0;
     background-color: var(--back-color);
-    
+    z-index: 1000;
 }
 
 .dropdown{
