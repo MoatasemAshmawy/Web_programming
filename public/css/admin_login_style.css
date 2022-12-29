@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1A1C20;
+}
+
+.admin_login_form{
+    display: flex;
+    flex-direction: column;
+    height:80%;
+    width: 80%;
+    background-color: burlywood;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.admin_login_form > input, .admin_login_form > button {
+  border-radius: 100vw; 
+  padding: 1rem; 
+  margin-bottom: 1rem;
+  outline: none;
+  border: none;
+  background-color: #1A1C20;
+  color: whitesmoke;
+  font-size: 1.3rem;
+}
+
+.admin_login_form > input::placeholder{
+    color: whitesmoke;
+}
+
+h1{
+    color: #1A1C20;
+    text-align: center;
+    margin-bottom: 1rem;
+}
