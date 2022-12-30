@@ -32,8 +32,10 @@ const db_pool = mysql.createPool({
 const  sessionStore = new mysqlStore(options);
 
 
-app.use(express.static(path.join(__dirname,'public')));
-app.use(express.static(path.join(__dirname,'')));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/css', express.static(__dirname + '/public/css'));
+app.use('/scripts', express.static(__dirname + '/public/scripts'));
+app.use('/assets', express.static(__dirname + '/public/assets'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(session({
@@ -68,7 +70,8 @@ CREATE TABLE IF NOT EXISTS Users  (
 
 })
 
-app.get('/home', (req,res) =>{
+//I can pass an array of paths
+app.get(['/','/home'], (req,res) =>{
     req.session.userId = 114;
     console.log(req.session);
     res.sendFile('/public/index.html',{root : __dirname} ,(err) =>{
@@ -77,6 +80,10 @@ app.get('/home', (req,res) =>{
    
 })
 
+// app.post('/auth/user', (req,res) =>{
+
+
+// })
 
 
 app.listen(PORT, ()=>{console.log(`server is listening on ${PORT}`)});
