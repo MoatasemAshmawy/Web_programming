@@ -1,0 +1,151 @@
+.products_wrapper{
+    display: flex;
+    justify-content: center;
+    width:100%;
+}
+
+
+.all_cards{
+	width: 90%;
+	display: flex;
+    align-items: center;
+    margin: auto;
+	flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.card{
+	min-width: 280px;
+    width: 25%;                             ;
+    height: 300px;
+    background: #f4f4f4;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow .5s ease-in-out, transform .5s ease-in-out;
+    overflow: hidden;
+	
+    
+
+}
+.card:hover{
+	transform: scale(1);
+	box-shadow: 5px 20px 30px rgba(0,0,0,.2);
+}
+.imgBox{
+	width: 100%;
+	height: 80%;
+	overflow: hidden;
+}
+.imgBox > img{
+	width: 100%;
+	height: 100%;
+}
+.details{
+	position: absolute;
+	width: 100%;
+	height: 50%;
+	background: #f4f4f4be;
+	padding: 10px 20px;
+	bottom: -30%;
+	transition: .5s;
+}
+.details:hover{
+	bottom: 0;
+}
+.textContent{
+	position: relative;
+	margin-top: 10px;
+	color: #555;
+}
+h3{
+	font-size: 20px;
+	padding: 5px 0;
+    color: #555;
+}
+.price{
+	position: absolute;
+    top: 1vh;
+    right: 0;
+    font-size: 20px;
+    color: #555;
+}
+h4{
+	font-size: 18px;
+	margin-top: 15px;
+	padding: 10px 0;
+	font-weight: bold;
+	color: #555;
+}
+
+button{
+	width: 100%;
+    padding: 5px 0;
+    margin: 10px 0;
+    background-image: linear-gradient(118deg,#000000, #1a1a1b,#353437, #4f4e52, #69686D);
+    color: #fff;
+    border-radius: 100vw;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    top: 7vh;
+    transition: 0.3s;
+}
+button:hover{
+	
+	transform: scale(1.1);
+}
+.description{
+	background: #92879b;
+    position: absolute;
+    width: 120px;
+    height: 131px;
+    top: -75px;
+    right: -68px;
+    border-radius: 0 0 200px 200px;
+    transition: all .5s, border-radius 1s, top 1s;
+	cursor: pointer;
+}
+
+.description .icon{
+	position: absolute;
+	top: 85px;
+	right: 85px;
+	color: #fff;
+	opacity: 1;
+}
+.description:hover{
+	width: 100%;
+	height: 80%;
+	right: 0;
+	top: 0;
+	border-radius: 0;
+}
+.description:hover .icon{
+	opacity: 0;
+}
+.description .contents{
+	color: #fff;
+	padding: 1%;
+	transform: scale(0.5);
+	transform: translateY(-200%);
+	transition: opacity .2s, transform .8s;
+	opacity: 0;
+}
+.description:hover .contents{
+	transform: scale(1);
+	opacity: 1;
+	transform: translateY(0);
+}
+.description h2{
+	margin: 20px 0;
+	text-align: center;
+}
+.card p{
+    position: relative;
+    top: 0vh;
+    font-size: 13px;
+}
