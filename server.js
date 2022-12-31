@@ -32,10 +32,10 @@ const db_pool = mysql.createPool({
 const  sessionStore = new mysqlStore(options);
 
 
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
-app.use('/css', express.static(__dirname + '/public/css'));
-app.use('/scripts', express.static(__dirname + '/public/scripts'));
-app.use('/assets', express.static(__dirname + '/public/assets'));
+app.use(['/node_modules','/auth/node_modules'], express.static(__dirname + '/node_modules'));
+app.use(['/css','/auth/css'], express.static(__dirname + '/public/css'));
+app.use(['/scripts','/auth/scripts'], express.static(__dirname + '/public/scripts'));
+app.use(['/assets','/auth/assets'], express.static(__dirname + '/public/assets'));
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(session({
@@ -84,6 +84,31 @@ app.get(['/','/home'], (req,res) =>{
 
 
 // })
+
+app.get('/adminlogin',(req,res)=>{
+    res.sendFile('/public/adminlogin.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    })
+})
+
+app.post('/auth/admin',(req,res)=>{
+    
+    const password =req.body.password;
+    const user = req.body.username;
+
+    if(password === process.env.ADMIN_PASS && user === process.env.ADMIN_USER){
+        
+        res.sendFile('/public/adminpage.html',{root : __dirname} ,(err) =>{
+            console.log(err);
+        })
+    }else{
+        const jsondata = {
+            Login : false
+        }
+        res.send(JSON.stringify(jsondata));
+        
+    }
+})
 
 
 app.listen(PORT, ()=>{console.log(`server is listening on ${PORT}`)});

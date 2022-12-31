@@ -5,8 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
+    <link rel="stylesheet" href="./css/admin_page_style.css">
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <script  defer src="./scripts/adminpage.js"></script>
 </head>
 <body>
-    
+    <div class="sidebar">
+        <div class="side_buttons">
+            <button id="dashboard">Dashboard</button>
+            <button id="products">Products</button>
+            <button id="orders">Orders</button>
+        </div>
+        <button id="logout">Logout<i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+    <main>
+        <div class="dashboard_view">
+            <div class="dash_wrapper">
+                <div id="orders">
+                    <h1>Orders</h1>
+                    <span id="orders_total">0</span>
+                </div>
+                <div id="sales">
+                    <h1>Sales</h1><span id="sales_total">0LE</span>
+                </div>
+            </div>
+            <div class="dash_wrapper">
+                <div id="products">
+                    <h1>Products</h1><span id="products_total">0</span>
+                </div>
+                <div id="users">
+                    <h1>Users</h1><span id="users_total">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="products_view">
+            <input type="text" id="product_search" placeholder="Search By Product Name">
+            <button id="prod_search_btn">Search</button>
+            <table class="product_table">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Category ID</th>
+                    
+                </tr>
+                
+                <tr>
+                    <td>
+                        10000
+                    </td>
+                    <td>
+                        lorem lorem lorem loremlorem
+                    </td>
+                    <td>
+                        100000
+                    </td>
+                    <td>
+                        100000
+                    </td>
+                    <td><button class="edit_btn">Edit</button></td>
+                    <td><button class="delete_btn">Delete</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="orders_view">
+        </div>
+    </main>
 </body>
 </html>
