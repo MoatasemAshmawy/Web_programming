@@ -1,0 +1,134 @@
+
+<!DOCTYPE html> 
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style_register.css">
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="./css/account.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body onload="myFunction()">
+<div class="sidebar">
+<div class="logo_content">
+<div class="logo">
+<div class="logo_name">Wood Boutique</div>
+</div>
+<i class="fa-solid fa-bars" id="btn"></i>
+</div>
+<ul class="nav_list">
+<li id="updateinfomyacc">
+<a href="#">
+<i class="fa-solid fa-user"></i>
+<span class="links_name">update info</span>
+</a>
+<span class="tooltip">update info</span>
+</li>
+<li id="changepasswordmyacc">
+  <a href="#">
+    <i class="fa-solid fa-keyboard"></i>
+  <span class="links_name">Change Password</span>
+  </a>
+  <span class="tooltip">Change Password</span>
+  </li>
+<li id="ordermyacc">
+<a href="#">
+  <i class='bx bx-cart-alt'></i>
+<span class="links_name">Order</span>
+</a>
+<span class="tooltip">Order</span>
+</li>
+<li>
+<a href="./index.html">
+<i class="fa-solid fa-h"></i>
+<span class="links_name">Home</span>
+</a>
+<span class="tooltip">Home</span>
+</li>
+<li>
+<a href="./about.html">
+<i class="fa-solid fa-a"></i>
+<span class="links_name">About</span>
+</a>
+<span class="tooltip">About</span>
+</li>
+<li>
+<a href="./products.html">
+<i class="fa-brands fa-product-hunt"></i>
+<span class="links_name">Products</span>
+</a>
+<span class="tooltip">Products</span>
+</li>
+
+</ul>
+<div class="content">
+<div class="user">
+<div class="user_details">
+<img src="#" alt="">
+<div class="name_job">
+<div class="account">account</div>
+<a href="#">
+<i class='bx bx-log-out' id="log_out" style="color: whitesmoke;"></i>
+</a>
+           
+</div>
+</div>
+</div>
+</div>
+  </div>
+   <div class="home_content">
+    <div class="form_wrapper" id="Passwordform_form">
+      <form class="register_form"action="#" style="background-color: #11101d;">
+        <input type="password" placeholder="old_password" name="old_password">
+        <input type="password" placeholder="new_password" name="new_password">
+        <button id="register_submit"type="submit">Change Password</button>
+      </form>
+      </div>
+      <div class="form_wrapper" id="updateinfo_form">
+        <form class="register_form"action="#" style="background-color: #11101d; ">
+          <input type="text" placeholder="First Name" name="f_name">
+          <input type="text" placeholder="Last Name" name="l_name">
+          <input type="email" placeholder="Email" name="Email">
+          <input type="text" placeholder="Home Adress" name="H_Adress">
+          <button id="register_submit"type="submit">Update info</button>
+        </form>
+        </div>
+   </div>
+<script>
+let btn = document.querySelector("#btn");
+let sidebar = document.querySelector(".sidebar");
+let searchBtn = document.querySelector(".bx-search");
+
+btn.onclick = function(){
+    sidebar.classList.toggle("active");
+}
+searchBtn.onclick = function(){
+    sidebar.classList.toggle("active");
+}
+</script>
+<script>
+const changepassword_btn = document.querySelector('#changepasswordmyacc');
+const Password_view = document.querySelector('#Passwordform_form');;
+const updateinfo_btn = document.querySelector('#updateinfomyacc');
+const updateinfo_view = document.querySelector('#updateinfo_form');;
+
+changepassword_btn.addEventListener("click",()=>{
+  Password_view.style.display = "flex";
+    updateinfo_view.style.display = "none";
+
+});
+
+updateinfo_btn.addEventListener("click",()=>{
+    Password_view.style.display = "none";
+    updateinfo_view.style.display = "flex";
+  
+});
+function myFunction() {
+  Password_view.style.display = "none";
+    updateinfo_view.style.display = "none";
+}
+</script>
+</body>
+</html>
+

@@ -76,6 +76,9 @@
     position: relative;
     bottom: -50vh;
 }
+body{
+    overflow-x: hidden;
+}
 #vision{
     font-family: 'Londrina Shadow', cursive;
     font-size: 10vw;
