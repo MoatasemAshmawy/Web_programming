@@ -84,7 +84,7 @@ app.get('/adminpage',(req,res)=>{
         console.log(err);
     });
     } else {
-        res.send('Please Login First.');
+        res.redirect('/adminlogin');
     }
 
 
