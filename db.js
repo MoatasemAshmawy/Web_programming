@@ -45,7 +45,7 @@ db.getUserByEmail = (email) =>{
 
 
 db.insertUser = async (firstName, lastName, email, password) =>{
-    let hashedPassword = await bcrypt.hash(password,10);
+    let hashedPassword = await bcrypt.hash(password,process.env.SALT_ROUNDS);
     return new Promise((resolve, reject)=>{
         pool.query('INSERT INTO users (FirstName, LastName, Email, User_Pass) VALUES (?, ?, ?, ?)', [firstName, lastName, email, hashedPassword], (error, result)=>{
             if(error){

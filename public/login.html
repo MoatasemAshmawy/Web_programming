@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/style_login.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <script src="./scripts/userlogin.js" defer></script>
 </head>
 <body>
   <nav class="navbar">
@@ -40,8 +41,8 @@
   <main>
   <div class="form_wrapper">
   <form class="login_form"action="/auth/user" method="post" >
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Password" id="password">
     <div class="login_wrapper">
       <a href="register.html">Don't have an account? Sign Up.</a>
       <a href="forgot.html">Forgot Password?</a>

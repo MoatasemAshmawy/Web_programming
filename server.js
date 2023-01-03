@@ -1,6 +1,7 @@
 const express= require('express');
 require("dotenv").config();
 const db = require('./db');
+const bcrypt = require('bcryptjs');
 const path = require('path');
 const session = require('express-session');
 const app=express();
@@ -72,6 +73,44 @@ app.get('/products', (req,res) =>{
    
 })
 
+app.get('/login', (req,res) =>{
+    res.sendFile('/public/login.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    })
+   
+})
+
+app.get('/register', (req,res) =>{
+    res.sendFile('/public/register.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    })
+   
+})
+
+app.get('/cart', (req,res) =>{
+    res.sendFile('/public/shopping_cart.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    })
+   
+})
+
+app.get('/myaccount', (req,res) =>{
+    if(req.session.userId){
+        res.sendFile('/public/account.html',{root : __dirname} ,(err) =>{
+            console.log(err);
+        })
+    }else{
+        res.redirect('/login');
+    }
+})
+
+app.get('/about', (req,res) =>{
+    res.sendFile('/public/about.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    })
+   
+})
+
 app.get('/adminlogin',(req,res)=>{
     if(req.session.adminId){
         res.redirect('/adminpage');
@@ -112,6 +151,28 @@ app.post('/auth/admin',(req,res)=>{
         
         res.json({login:false});
         
+    }
+})
+
+app.post('/auth/user', async (req,res)=>{
+    
+    const password =req.body.password;
+    const email = req.body.email;
+    let user = await db.getUserByEmail(email); 
+    if(user){
+        let hashedPassword = user.User_Pass;
+        let isMatch = await bcrypt.compare(password,hashedPassword);
+        if(isMatch){
+            req.session.userId = user.User_Id;
+            req.session.cartId = user.cartId;
+            res.json({login:true})
+        }
+        else{
+            res.json({login:false});
+        }
+    }
+    else{
+        res.json({login:false});
     }
 })
 
