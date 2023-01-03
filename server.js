@@ -1,10 +1,20 @@
 const express= require('express');
 require("dotenv").config();
+const db = require('./db');
 const path = require('path');
 const session = require('express-session');
 const app=express();
-const mysql = require("mysql");
 const { dirname } = require('path');
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, './public/assets/images/')     // './public/images/' directory name where save the file
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname))
+    }
+});
+const upload = multer({storage:storage});
 const mysqlStore = require('express-mysql-session')(session);
 const PORT= process.env.APP_PORT;
 const IN_PROD = process.env.NODE_ENV === 'production';
@@ -20,14 +30,7 @@ const options ={
     
 };
 
-const db_pool = mysql.createPool({
-    connectionLimit: 10,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.MYSQL_DB,
-    port: process.env.DB_PORT
-});
+
 
 const  sessionStore = new mysqlStore(options);
 
@@ -52,43 +55,44 @@ app.use(session({
 }));
 
 
-db_pool.query(`
-CREATE TABLE IF NOT EXISTS Users  (
-    User_Id int AUTO_INCREMENT NOT NULL,
-    FirstName varchar(255),
-    LastName varchar(255),
-    Address varchar(255),
-    Email varchar(255),
-    User_Pass varchar(255),
-    PRIMARY KEY (User_Id)
-);`, (err, result)=>{
-    if(err){
 
-        console.log(err);
-    }
-    console.log(result);
-
-})
 
 //I can pass an array of paths
 app.get(['/','/home'], (req,res) =>{
-    req.session.userId = 114;
-    console.log(req.session);
     res.sendFile('/public/index.html',{root : __dirname} ,(err) =>{
         console.log(err);
     })
    
 })
 
-// app.post('/auth/user', (req,res) =>{
 
-
-// })
 
 app.get('/adminlogin',(req,res)=>{
+    if(req.session.adminId){
+        res.redirect('/adminpage');
+    }
+    else{
     res.sendFile('/public/adminlogin.html',{root : __dirname} ,(err) =>{
         console.log(err);
     })
+    }
+})
+
+app.get('/adminpage',(req,res)=>{
+    if(req.session.adminId){
+    res.sendFile('/public/adminpage.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    });
+    } else {
+        res.send('Please Login First.');
+    }
+
+
+})
+
+app.post('/logoutadmin',(req,res)=>{
+    req.session.destroy();
+    res.redirect('/adminlogin');
 })
 
 app.post('/auth/admin',(req,res)=>{
@@ -97,18 +101,20 @@ app.post('/auth/admin',(req,res)=>{
     const user = req.body.username;
 
     if(password === process.env.ADMIN_PASS && user === process.env.ADMIN_USER){
-        
-        res.sendFile('/public/adminpage.html',{root : __dirname} ,(err) =>{
-            console.log(err);
-        })
+        req.session.adminId = 1;
+        res.json({login:true});
     }else{
-        const jsondata = {
-            Login : false
-        }
-        res.send(JSON.stringify(jsondata));
+        
+        res.json({login:false});
         
     }
 })
 
+app.post('/addproduct',upload.single('product_image'),(req,res)=>{
+    const {product_name,product_price,product_quantity,product_desc} = req.body;
+    const image = req.file;
+    db.addProduct(1,product_name,product_price,product_desc,image.filename,product_quantity)
+    .then((result)=> console.log("Succesfully added product"));
+})
 
 app.listen(PORT, ()=>{console.log(`server is listening on ${PORT}`)});

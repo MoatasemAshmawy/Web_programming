@@ -26,7 +26,7 @@ main{
     justify-content: space-between;
     border-right: 1px solid rgba(255, 255, 255,0.5);
 }
-.side_buttons>button,.sidebar>button{
+.side_buttons>button,.sidebar>form>button{
     display: block;
     outline:none;
     cursor:pointer;
@@ -40,7 +40,7 @@ main{
     transition: all .2s;
 }
 
-.side_buttons>button:hover,.sidebar>button:hover{
+.side_buttons>button:hover,.sidebar>form>button:hover{
     background-color: #555;
 }
 

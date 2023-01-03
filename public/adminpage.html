@@ -18,7 +18,7 @@
             <button id="products">Products</button>
             <button id="orders">Orders</button>
         </div>
-        <button id="logout">Logout<i class="fa-solid fa-right-from-bracket"></i></button>
+        <form action="/logoutadmin" method="post"><button type='submit'id="logout">Logout<i class="fa-solid fa-right-from-bracket"></i></button></form>
     </div>
     <main>
         <div class="dashboard_view">
@@ -43,19 +43,20 @@
         <div class="products_view" style=" background-color: whitesmoke;">
             <div class="container">
                 <div class="admin-product-form-container">
-                   <form action="#" id="add_view">
+                   <form action="/addproduct" id="add_view" enctype="multipart/form-data" method="post">
                       <h3>add a new product</h3>
                       <input type="text" placeholder="enter product name" name="product_name" class="box">
-                      <input type="number" placeholder="enter product price" name="product_price" class="box">
+                      <input type="number" placeholder="enter product price" step="0.01" name="product_price" class="box">
+                      <input type="number" placeholder="enter product quantity" name="product_quantity" class="box">
                         <label >Category:</label>
                         <select name = "dropdown">
                             <option value = "wood ">wood</option>
                             <option value = "wood">wood</option>
                             <option value = "wood">wood</option>
                          </select>
-                      <input type="number" name="product_ID" class="box" placeholder="ID">
+                      <input type="text" name="product_desc" class="box" placeholder="Description">
                       <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
-                      <button type="button" class="btn">Add Product</button>
+                      <button type="submit" class="btn">Add Product</button>
                       <button type="button" class="btn" id="go-backadd">go Back</button>
                      
                    </form>

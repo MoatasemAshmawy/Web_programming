@@ -16,11 +16,29 @@ let db = {};
 
 db.getUser = (id) =>{
     return new Promise((resolve, reject)=>{
-        pool.query('SELECT * FROM users WHERE id= ?', [id], (error, user)=>{
+        pool.query('SELECT * FROM users WHERE User_Id = ?', [id], (error, user)=>{
             if(error){
                 return reject(error);
             }
-            return resolve(user);
+            return resolve(user[0]);
+        });
+    });
+};
+
+
+db.getUserByEmail = (email) =>{
+    return new Promise((resolve, reject)=>{
+        pool.query('SELECT * FROM users WHERE Email = ?', [email], (error, result)=>{
+            if(error){
+                return reject(error);
+            }
+            let user = result[0];
+            pool.query('Select Cart_Id FROM cart WHERE User_Id = ?',[user.User_Id],(err,res)=>{
+                if(err){
+                    return reject(err); 
+                }
+                return resolve({Cart_Id : res[0].Cart_Id, ...user });
+              });
         });
     });
 };
@@ -38,7 +56,7 @@ db.insertUser = async (firstName, lastName, email, password) =>{
                 if(err){
                     return reject(err); 
                 }
-                return resolve({userId : userId, cartId : res.insertId});
+                return resolve({User_Id : userId, Cart_Id : res.insertId});
               });
         });
     });
@@ -75,6 +93,38 @@ db.changeUserPassword = async (userId, password)=>{
   
 };
 
+db.getProducts = ()=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`SELECT * FROM product`,(error,result)=>{
+            if(error){
+                return reject(error);
+            }
+            return resolve(result);
+        });
+    });
+};
 
+db.addProduct = (category_id,p_name,p_price,p_desc,p_img,p_quantity)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`INSERT INTO product (Category_Id, Product_Name, Product_Price, Product_Desc, Product_Img, Quantity)
+        VALUES (?,?,?,?,?,?)`,[category_id,p_name,p_price,p_desc,p_img,p_quantity],(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    });
+};
+
+db.deleteProduct = (p_id)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`DELETE FROM product WHERE Product_Id =?`,[p_id],(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    });
+};
 
 module.exports = db;
