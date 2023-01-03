@@ -40,6 +40,50 @@
                 </div>
             </div>
         </div>
+        <div class="orders_view" style="background-color: whitesmoke;">
+            <table>
+                <tbody>
+                <tr>
+                <th>Order ID</th>
+                <th>Products </th>
+                <th>User ID</th>
+                
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                
+                </tbody>
+                </table>
+          </div>
         <div class="products_view" style=" background-color: whitesmoke;">
             <div class="container">
                 <div class="admin-product-form-container">
@@ -56,7 +100,7 @@
                          </select>
                       <input type="text" name="product_desc" class="box" placeholder="Description">
                       <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
-                      <button type="submit" class="btn">Add Product</button>
+                      <button type="submit" class="btn" acti>Add Product</button>
                       <button type="button" class="btn" id="go-backadd">go Back</button>
                      
                    </form>
@@ -65,14 +109,16 @@
                       <form action="#" id="update_view">
                          <h3>Update product</h3>
                          <input type="text" placeholder="enter product name" name="product_name" class="box">
-                         <input type="number" placeholder="enter product price" name="product_price" class="box">
+                         <input type="number" step="0.01" placeholder="enter product price" name="product_price" class="box">
                             <select name = "dropdown">
                                <option value = "wood ">wood</option>
                                <option value = "wood">wood</option>
                                <option value = "wood">wood</option>
                             </select>
-                         <input type="number" name="product_ID" class="box" placeholder="ID">
+                         <input type="text" name="product_desc" class="box" placeholder="Description">
+                         <input type="number" readonly="readonly" name="product_ID" class="box" placeholder="ID">
                          <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
+        
                          <button type="button" class="btn">update Product</button>
                          <button type="button" class="btn" id="go-backup">go Back</button>
                         
@@ -81,6 +127,8 @@
                 </div>
                
              <div class="product-display">
+                <input type="submit" class="btn" name="add_product" value ="Add" id="addproduct">
+
                 <table class="product-display-table" id="tabel_view">
                    <thead>
                    <tr>
@@ -89,7 +137,7 @@
                       <th>product Category</th>
                       <th>product Image</th>
                       <th>product Price</th>
-          
+                      
                    </tr>
                    </thead>
                 
@@ -104,16 +152,17 @@
           
                       </td>
                       <td></td>
-                      <td> <input type="submit" class="btn" name="add_product" value ="Add" id="addproduct"></td>
+    
                       <td> <input type="submit" class="btn" name="updateproduct" value="Edit" id="updateproduct"></td>
                       <td> <input type="submit" class="btn" name="delete_product" value="Delete"></td>
                    </tr>
           
                 </table>
+              
              </div>
           
           </div>
-          
+        
           </body>
           <script>
           const addproduct_btn = document.querySelector('#addproduct');
@@ -148,8 +197,6 @@
               tabel_view.style.display = "none";
           });
           </script>
-        <div class="orders_view">
-        </div>
     </main>
 </body>
 </html>
