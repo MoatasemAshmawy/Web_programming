@@ -65,7 +65,12 @@ app.get(['/','/home'], (req,res) =>{
    
 })
 
-
+app.get('/products', (req,res) =>{
+    res.sendFile('/public/products.html',{root : __dirname} ,(err) =>{
+        console.log(err);
+    })
+   
+})
 
 app.get('/adminlogin',(req,res)=>{
     if(req.session.adminId){
@@ -115,6 +120,11 @@ app.post('/addproduct',upload.single('product_image'),(req,res)=>{
     const image = req.file;
     db.addProduct(1,product_name,product_price,product_desc,image.filename,product_quantity)
     .then((result)=> console.log("Succesfully added product"));
+})
+
+app.get('/getproducts',async (req,res)=>{
+    let result = await db.getProducts();
+    res.json(result);
 })
 
 app.listen(PORT, ()=>{console.log(`server is listening on ${PORT}`)});
