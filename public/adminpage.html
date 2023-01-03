@@ -7,6 +7,8 @@
     <title>Admin Page</title>
     <link rel="stylesheet" href="./css/admin_page_style.css">
     <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" href="./css/product_admin.css">
     <script  defer src="./scripts/adminpage.js"></script>
 </head>
 <body>
@@ -38,36 +40,113 @@
                 </div>
             </div>
         </div>
-        <div class="products_view">
-            <input type="text" id="product_search" placeholder="Search By Product Name">
-            <button id="prod_search_btn">Search</button>
-            <table class="product_table">
-                <tr>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
-                    <th>Category ID</th>
-                    
-                </tr>
+        <div class="products_view" style=" background-color: whitesmoke;">
+            <div class="container">
+                <div class="admin-product-form-container">
+                   <form action="#" id="add_view">
+                      <h3>add a new product</h3>
+                      <input type="text" placeholder="enter product name" name="product_name" class="box">
+                      <input type="number" placeholder="enter product price" name="product_price" class="box">
+                        <label >Category:</label>
+                        <select name = "dropdown">
+                            <option value = "wood ">wood</option>
+                            <option value = "wood">wood</option>
+                            <option value = "wood">wood</option>
+                         </select>
+                      <input type="number" name="product_ID" class="box" placeholder="ID">
+                      <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
+                      <button type="button" class="btn">Add Product</button>
+                      <button type="button" class="btn" id="go-backadd">go Back</button>
+                     
+                   </form>
+                   
+                   <div class="admin-product-form-container">
+                      <form action="#" id="update_view">
+                         <h3>Update product</h3>
+                         <input type="text" placeholder="enter product name" name="product_name" class="box">
+                         <input type="number" placeholder="enter product price" name="product_price" class="box">
+                            <select name = "dropdown">
+                               <option value = "wood ">wood</option>
+                               <option value = "wood">wood</option>
+                               <option value = "wood">wood</option>
+                            </select>
+                         <input type="number" name="product_ID" class="box" placeholder="ID">
+                         <input type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" class="box">
+                         <button type="button" class="btn">update Product</button>
+                         <button type="button" class="btn" id="go-backup">go Back</button>
+                        
+                      </form>
+                   </div>
+                </div>
+               
+             <div class="product-display">
+                <table class="product-display-table" id="tabel_view">
+                   <thead>
+                   <tr>
+                      <th>product ID</th>
+                      <th>product Name</th>
+                      <th>product Category</th>
+                      <th>product Image</th>
+                      <th>product Price</th>
+          
+                   </tr>
+                   </thead>
                 
-                <tr>
-                    <td>
-                        10000
-                    </td>
-                    <td>
-                        lorem lorem lorem loremlorem
-                    </td>
-                    <td>
-                        100000
-                    </td>
-                    <td>
-                        100000
-                    </td>
-                    <td><button class="edit_btn">Edit</button></td>
-                    <td><button class="delete_btn">Delete</button></td>
-                </tr>
-            </table>
-        </div>
+                   <tr>
+                      <td>image</td>
+                      <td>youssef</td>
+                      <td>moatssem</td>
+                      <td>
+                         333
+                      </td>
+                      <td>
+          
+                      </td>
+                      <td></td>
+                      <td> <input type="submit" class="btn" name="add_product" value ="Add" id="addproduct"></td>
+                      <td> <input type="submit" class="btn" name="updateproduct" value="Edit" id="updateproduct"></td>
+                      <td> <input type="submit" class="btn" name="delete_product" value="Delete"></td>
+                   </tr>
+          
+                </table>
+             </div>
+          
+          </div>
+          
+          </body>
+          <script>
+          const addproduct_btn = document.querySelector('#addproduct');
+          const gobackadd_btn = document.querySelector('#go-backadd');
+          const updateproduct_btn = document.querySelector('#updateproduct');
+          const gobackup_btn = document.querySelector('#go-backup');
+          
+          const add_view  = document.querySelector('#add_view');
+          const update_view = document.querySelector('#update_view');
+          const tabel_view = document.querySelector('#tabel_view');
+          
+          addproduct_btn.addEventListener("click",()=>{
+              add_view.style.display = "block";
+              update_view.style.display = "none";
+              tabel_view.style.display = "none";
+          });
+          
+          gobackadd_btn.addEventListener("click",()=>{
+              add_view.style.display = "none";
+              update_view.style.display = "none";
+              tabel_view.style.display = "block";
+          });
+          
+          gobackup_btn.addEventListener("click",()=>{
+              add_view.style.display = "none";
+              update_view.style.display = "none";
+              tabel_view.style.display = "block";
+          });
+          updateproduct_btn.addEventListener("click",()=>{
+              add_view.style.display = "none";
+              update_view.style.display = "block";
+              tabel_view.style.display = "none";
+          });
+          </script>
         <div class="orders_view">
         </div>
     </main>
