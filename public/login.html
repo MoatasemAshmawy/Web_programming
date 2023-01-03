@@ -30,10 +30,10 @@
   <main>
   <div class="form_wrapper">
   <form class="login_form"action="/auth/user" method="post" >
-    <input type="email" placeholder="Email" id="email">
-    <input type="password" placeholder="Password" id="password">
+    <input type="email" placeholder="Email" id="email" required>
+    <input type="password" placeholder="Password" id="password" required>
     <div class="login_wrapper">
-      <a href="register.html">Don't have an account? Sign Up.</a>
+      <a href="/register">Don't have an account? Sign Up.</a>
       <a href="forgot.html">Forgot Password?</a>
     </div>
     <button id="login_submit" type="submit">Login</button>

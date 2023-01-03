@@ -139,6 +139,11 @@ app.post('/logoutadmin',(req,res)=>{
     res.redirect('/adminlogin');
 })
 
+app.post('/logoutuser',(req,res)=>{
+    req.session.destroy();
+    res.redirect('/home');
+})
+
 app.post('/auth/admin',(req,res)=>{
     
     const password =req.body.password;
@@ -164,7 +169,7 @@ app.post('/auth/user', async (req,res)=>{
         let isMatch = await bcrypt.compare(password,hashedPassword);
         if(isMatch){
             req.session.userId = user.User_Id;
-            req.session.cartId = user.cartId;
+            req.session.cartId = user.Cart_Id;
             res.json({login:true})
         }
         else{
@@ -186,6 +191,23 @@ app.post('/addproduct',upload.single('product_image'),(req,res)=>{
 app.get('/getproducts',async (req,res)=>{
     let result = await db.getProducts();
     res.json(result);
+})
+
+
+app.post('/registeruser', async (req,res)=>{
+
+    const {email,password,f_name,l_name} = req.body;
+    
+    let user = await db.getUserByEmail(email);
+    
+    if(user){
+        res.json({register:false})
+    }else{
+        let registered = await db.insertUser(f_name,l_name,email,password);
+        req.session.userId = registered.User_Id;
+        req.session.cartId = registered.Cart_Id;
+        res.json({register:true});
+    }
 })
 
 app.listen(PORT, ()=>{console.log(`server is listening on ${PORT}`)});

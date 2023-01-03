@@ -4,6 +4,7 @@ let password = document.querySelector('#password');
 let email = document.querySelector('#email');
 let error = document.createElement('h3');
 error.innerText = 'Invalid Email or Password';
+error.style.color = 'red';
 
 
 login_form.addEventListener('submit',(e)=>{
