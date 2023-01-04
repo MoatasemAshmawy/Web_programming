@@ -210,4 +210,30 @@ app.post('/registeruser', async (req,res)=>{
     }
 })
 
+
+app.post('/addtocart', async (req,res)=>{
+    const product_id = req.body.product_id;
+    const cartId = req.session.cartId;
+    let result = await db.addToCart(cartId,product_id);
+    res.json(result);
+})
+
+app.post('/deletefromcart', async (req,res)=>{
+    const product_id = req.body.product_id;
+    const cartId = req.session.cartId;
+    let result = await db.deleteCartItem(cartId,product_id);
+    res.json(result);
+})
+
+
+app.get('/getcartproducts',async (req,res)=>{
+    if(!req.session.cartId){
+        res.json({login:false});
+        return;
+    }
+    const cartId = req.session.cartId;
+    let result = await db.getCartProducts(cartId);
+    res.json({result,login:true});
+})
+
 app.listen(PORT, ()=>{console.log(`server is listening on ${PORT}`)});

@@ -130,4 +130,43 @@ db.deleteProduct = (p_id)=>{
     });
 };
 
+
+db.deleteCartItem = (cart_id,p_id)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`DELETE FROM cart_product WHERE Product_Id =? AND Cart_Id = ?`,[p_id,cart_id],(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    });
+};
+
+db.addToCart = (cartId,p_id)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`INSERT INTO cart_product (Cart_Id,Product_Id) VALUES (?,?)`,[cartId,p_id],(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    });
+};
+
+
+db.getCartProducts = (cartId)=>{
+    return new Promise((resolve,reject)=>{
+        pool.query(`SELECT DISTINCT *
+        FROM cart_product
+        INNER JOIN product ON cart_product.Product_Id = product.Product_Id WHERE cart_product.Cart_Id = ?`,[cartId],(err,result)=>{
+            if(err){
+                return reject(err);
+            }
+            else{
+                return resolve(result);
+            }
+        });
+    });
+};
+
 module.exports = db;
