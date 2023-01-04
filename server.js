@@ -230,8 +230,12 @@ app.post('/updateinfo', async (req,res)=>{
 app.post('/addtocart', async (req,res)=>{
     const product_id = req.body.product_id;
     const cartId = req.session.cartId;
+    if(cartId){
     let result = await db.addToCart(cartId,product_id);
     res.json(result);
+    }else{
+        res.json({added:false});
+    }
 })
 
 app.post('/deletefromcart', async (req,res)=>{
