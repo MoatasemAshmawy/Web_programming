@@ -64,4 +64,5 @@ async function deletefromcart(obj){
     })
      
 	console.log(response);
+    document.location.reload();
 }
