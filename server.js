@@ -164,6 +164,7 @@ app.post('/auth/user', async (req,res)=>{
     const password =req.body.password;
     const email = req.body.email;
     let user = await db.getUserByEmail(email); 
+    
     if(user){
         let hashedPassword = user.User_Pass;
         let isMatch = await bcrypt.compare(password,hashedPassword);
@@ -213,14 +214,14 @@ app.post('/registeruser', async (req,res)=>{
 
 app.post('/updateinfo', async (req,res)=>{
 
-    const {email,address,f_name,l_name} = req.body;
+    const {address,f_name,l_name} = req.body;
     
-    let user = await db.getUserByEmail(email);
+    let user = await db.getUser(req.session.userId);
     
-    if(user){
-        res.json({register:false})
+    if(!user){
+        res.json({register:false});
     }else{
-        let registered = await db.updateUserInfo(req.session.userId,f_name,l_name,email,address);
+        let registered = await db.updateUserInfo(req.session.userId,f_name,l_name,user.Email,address);
         res.json({register:true});
     }
 })
