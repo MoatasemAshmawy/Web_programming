@@ -17,7 +17,8 @@ error2.style.color = 'red';
 
 
 register_form.addEventListener('submit',(e)=>{
-
+    error.remove();
+    error2.remove();
     e.preventDefault();
 
     if(password.value !== confirm_password.value){

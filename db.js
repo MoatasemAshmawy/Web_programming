@@ -33,6 +33,9 @@ db.getUserByEmail = (email) =>{
                 return reject(error);
             }
             let user = result[0];
+            if(!user){
+                return resolve(user);
+            }
             pool.query('Select Cart_Id FROM cart WHERE User_Id = ?',[user.User_Id],(err,res)=>{
                 if(err){
                     return reject(err); 
