@@ -211,6 +211,21 @@ app.post('/registeruser', async (req,res)=>{
 })
 
 
+app.post('/updateinfo', async (req,res)=>{
+
+    const {email,address,f_name,l_name} = req.body;
+    
+    let user = await db.getUserByEmail(email);
+    
+    if(user){
+        res.json({register:false})
+    }else{
+        let registered = await db.updateUserInfo(req.session.userId,f_name,l_name,email,address);
+        res.json({register:true});
+    }
+})
+
+
 app.post('/addtocart', async (req,res)=>{
     const product_id = req.body.product_id;
     const cartId = req.session.cartId;

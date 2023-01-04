@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/account.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./scripts/myaccount.js"></script>
    </head>
 <body onload="myFunction()">
 <div class="sidebar">
@@ -87,10 +88,10 @@
       </div>
       <div class="form_wrapper" id="updateinfo_form">
         <form class="register_form"action="#" style="background-color: #11101d; ">
-          <input type="text" placeholder="First Name" name="f_name">
-          <input type="text" placeholder="Last Name" name="l_name">
-          <input type="email" placeholder="Email" name="Email">
-          <input type="text" placeholder="Home Address" name="H_Address">
+          <input type="text" placeholder="First Name" name="f_name" id="f_name" >
+          <input type="text" placeholder="Last Name" name="l_name" id="l_name">
+          <input type="email" placeholder="Email" name="Email" id="email">
+          <input type="text" placeholder="Home Address" name="H_Address" id="address">
           <button id="register_submit"type="submit">Update info</button>
         </form>
         </div>
